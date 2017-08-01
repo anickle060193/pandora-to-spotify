@@ -1,0 +1,26 @@
+{
+    "name": "pandora-to-spotify-functions",
+    "description": "Cloud Functions for Pandora-to-Spotify",
+    "version": "0.1.0",
+    "main": "./build/index.js",
+    "private": true,
+    "dependencies": {
+        "firebase-admin": "~4.2.1",
+        "firebase-functions": "^0.5.7",
+        "request": "^2.81.0",
+        "request-promise": "^4.2.1",
+        "url": "^0.11.0"
+    },
+    "devDependencies": {
+        "@types/request": "^2.0.0",
+        "@types/request-promise": "^4.1.36",
+        "typescript": "^2.4.2"
+    },
+    "scripts": {
+        "build": "tsc",
+        "start-tsc": "tsc --watch",
+        "start-functions": "firebase serve --only functions",
+        "predeploy": "yarn run build",
+        "deploy": "firebase deploy --only functions"
+    }
+}

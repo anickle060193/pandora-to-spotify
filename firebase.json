@@ -1,0 +1,19 @@
+{
+    "hosting": {
+        "public": "build",
+        "rewrites": [
+            {
+                "source": "/stations/*",
+                "function": "getStations"
+            },
+            {
+                "source": "/station-likes/*",
+                "function": "getStationLikes"
+            },
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ]
+    }
+}
