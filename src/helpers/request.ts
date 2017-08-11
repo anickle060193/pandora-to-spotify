@@ -1,23 +1,23 @@
-export function get( url: string, params: object = { } )
+export function get( url: string )
 {
-    let u = new URL( url );
-    for( let p of Object.keys( params ) )
-    {
-        u.searchParams.set( p, params[ p ] );
-    }
-    console.log( u.href );
     return new Promise( ( resolve, reject ) =>
     {
         let request = new XMLHttpRequest();
-        request.withCredentials = true;
         request.onreadystatechange = () =>
         {
-            if( request.readyState === 4 && request.status === 200 )
+            if( request.readyState === 4 )
             {
-                resolve( request.responseText );
+                if( request.status === 200 )
+                {
+                    resolve( JSON.parse( request.response ) );
+                }
+                else
+                {
+                    reject( request.response );
+                }
             }
         };
-        request.open( 'GET', u.href, true );
+        request.open( 'GET', url, true );
         request.send();
     } );
 }
